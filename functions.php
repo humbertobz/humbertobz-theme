@@ -57,16 +57,19 @@ class WP_HTML_Compression
 
     // Variables
     protected $html;
+
     public function __construct($html)
     {
         if (!empty($html)) {
             $this->parseHTML($html);
         }
     }
+
     public function __toString()
     {
         return $this->html;
     }
+
     protected function bottomComment($raw, $compressed)
     {
         $raw = strlen($raw);
@@ -196,15 +199,50 @@ add_filter('the_content', 'custom_excerpt');
 /*
  * Use different thumbnail size for Jetpack portfolio featured image
  */
+ function remove_then_add_image_sizesp()
+ {
+     remove_image_size('jetpack_portfolio_thumbnail_size');
+     add_image_size('jetpack_portfolio_thumbnail_size', 360, 240, array( 'center', 'top' ));
+ }
 add_action('init', 'remove_then_add_image_sizesp');
-function remove_then_add_image_sizesp()
-{
-    remove_image_size('jetpack_portfolio_thumbnail_size');
-    add_image_size('jetpack_portfolio_thumbnail_size', 360, 240, true);
-}
 
-add_filter('jetpack_portfolio_thumbnail_size', 'new_custom_portfolio_image_size');
 function new_custom_portfolio_image_size()
 {
     return 'jetpack_portfolio_thumbnail_size';
 }
+add_filter('jetpack_portfolio_thumbnail_size', 'new_custom_portfolio_image_size');
+
+function portfolio_thumbnail_size($sizes)
+{
+    $addsizes = array(
+        "jetpack_portfolio_thumbnail_size" => __( "Portfolio thumbnail")
+    );
+    $newsizes = array_merge($sizes, $addsizes);
+    return $newsizes;
+}
+add_filter('image_size_names_choose', 'portfolio_thumbnail_size');
+
+function adsbygoogle_wp_head()
+{
+    if ( !is_front_page() && !is_home() && 'page' != get_post_type() && 'jetpack-portfolio' != get_post_type() ) {
+        ?>
+        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <script>
+        (adsbygoogle = window.adsbygoogle || []).push({
+            google_ad_client: "ca-pub-xxxxxxxxxxxxxxxx",
+            enable_page_level_ads: true
+        });
+        </script>
+        <?php
+    }
+}
+add_action('wp_head', 'adsbygoogle_wp_head');
+
+function jetpackme_no_related_posts( $options )
+{
+    if (is_singular('jetpack-portfolio')) {
+        $options['enabled'] = false;
+    }
+    return $options;
+}
+add_filter( 'jetpack_relatedposts_filter_options', 'jetpackme_no_related_posts' );

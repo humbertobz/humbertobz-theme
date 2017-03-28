@@ -23,6 +23,12 @@ if ($terms && ! is_wp_error($terms)) :
 
 <article id="post-<?php the_ID(); ?>" <?php post_class($filtering); ?>>
     <a href="<?php the_permalink(); ?>" rel="bookmark" class="image-link" tabindex="-1">
+        <div class="mask">
+            <div class="title">
+                <h3><?php the_title(); ?></h3>
+                <!-- <small>Nome da Empresa</small> -->
+            </div>
+        </div>
         <?php  if ('' != get_the_post_thumbnail()) : ?>
             <?php the_post_thumbnail('jetpack_portfolio_thumbnail_size'); //360x240 ?>
         <?php endif; ?>

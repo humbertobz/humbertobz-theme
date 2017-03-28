@@ -25,7 +25,7 @@ get_header(); ?>
                 <h1 class="entry-title">Portfólio</h1>
             </header>
 
-            <div class="portfolio-filter">
+            <!-- <div class="portfolio-filter">
                 <ul>
                     <li id="filter--all" class="filter active" data-filter="*"><?php _e( 'Todos', 'humbertobz' ) ?></li>
                     <?php
@@ -38,7 +38,7 @@ get_header(); ?>
                         endforeach;
                     ?>
                 </ul>
-            </div>
+            </div> -->
             <div class="portfolio">
 
                 <?php
