@@ -175,7 +175,7 @@ function wp_html_compression_start()
 {
     ob_start('wp_html_compression_finish');
 }
-add_action('get_header', 'wp_html_compression_start');
+// add_action('get_header', 'wp_html_compression_start');
 
 /**
  * On lists of posts change the full content of the post for a custom excerpt.
