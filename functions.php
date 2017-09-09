@@ -12,6 +12,7 @@ function humbertobz_enqueue_styles()
         array( $parent_style ),
         wp_get_theme()->get('Version')
     );
+    wp_enqueue_style( 'dashicons' );
 }
 add_action( 'wp_enqueue_scripts', 'humbertobz_enqueue_styles' );
 
