@@ -13,31 +13,21 @@
 		<?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
 	</header><!-- .entry-header -->
 
-	<?php //twentysixteen_excerpt(); ?>
-
-	<?php //twentysixteen_post_thumbnail(); ?>
-
 	<div class="entry-content">
 		<?php
 			the_content();
 
-			wp_link_pages( array(
-				'before'      => '<div class="page-links"><span class="page-links-title">' . __( 'Pages:', 'twentysixteen' ) . '</span>',
-				'after'       => '</div>',
-				'link_before' => '<span>',
-				'link_after'  => '</span>',
-				'pagelink'    => '<span class="screen-reader-text">' . __( 'Page', 'twentysixteen' ) . ' </span>%',
-				'separator'   => '<span class="screen-reader-text">, </span>',
-			) );
-
-			if ( '' !== get_the_author_meta( 'description' ) ) {
-				get_template_part( 'template-parts/biography' );
+			$terms_list = get_the_term_list( '', 'jetpack-portfolio-tag', '', _x( ', ', 'Used between list items, there is a space after the comma.', 'twentysixteen' ) );
+			if ( $terms_list ) {
+				printf( '<span class="tecnologias"><span class="screen-reader-text">%1$s </span><strong>Tecnologias:</strong> %2$s</span>',
+					_x( 'Tecnologias', 'Used before tag names.', 'twentysixteen' ),
+					strip_tags( $terms_list )
+				);
 			}
 		?>
 	</div><!-- .entry-content -->
 
 	<footer class="entry-footer">
-		<?php twentysixteen_entry_meta(); ?>
 		<?php
 			edit_post_link(
 				sprintf(
