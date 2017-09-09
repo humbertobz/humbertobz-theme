@@ -31,6 +31,20 @@ body.post-type-archive-jetpack-portfolio:not(.search-results) article:not(.type-
   float: none;
 }
 
+.single-jetpack-portfolio .nav-previous {
+  float: left;
+  width: 50%;
+}
+
+.single-jetpack-portfolio .nav-next {
+  float: right;
+  width: 50%;
+}
+
+.single-jetpack-portfolio .nav-next a {
+  text-align: right;
+}
+
 .portfolio-filter {
   margin-bottom: 20px;
   overflow: hidden;

@@ -1,6 +1,6 @@
 <?php
 /**
- * The template for displaying all single posts and attachments
+ * The template for displaying single portfolio
  *
  * @package WordPress
  * @subpackage Twenty_Sixteen
@@ -18,17 +18,7 @@ get_header(); ?>
 			// Include the single post content template.
 			get_template_part( 'template-parts/content', 'single-jetpack-portfolio' );
 
-			// If comments are open or we have at least one comment, load up the comment template.
-			/*if ( comments_open() || get_comments_number() ) {
-				comments_template();
-			}
-
-			if ( is_singular( 'attachment' ) ) {
-				// Parent post navigation.
-				the_post_navigation( array(
-					'prev_text' => _x( '<span class="meta-nav">Published in</span><span class="post-title">%title</span>', 'Parent post link', 'twentysixteen' ),
-				) );
-			} elseif ( is_singular( 'post' ) ) {
+			if ( is_singular( 'jetpack-portfolio' ) ) {
 				// Previous/next post navigation.
 				the_post_navigation( array(
 					'next_text' => '<span class="meta-nav" aria-hidden="true">' . __( 'Next', 'twentysixteen' ) . '</span> ' .
@@ -38,7 +28,7 @@ get_header(); ?>
 						'<span class="screen-reader-text">' . __( 'Previous post:', 'twentysixteen' ) . '</span> ' .
 						'<span class="post-title">%title</span>',
 				) );
-			}*/
+			}
 
 			// End of the loop.
 		endwhile;
