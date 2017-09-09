@@ -26,7 +26,7 @@ if ($terms && ! is_wp_error($terms)) :
         <div class="mask">
             <div class="title">
                 <h3><?php the_title(); ?></h3>
-                <!-- <small>Nome da Empresa</small> -->
+                <small><?php the_date('m/Y'); ?></small>
             </div>
         </div>
         <?php  if ('' != get_the_post_thumbnail()) : ?>
